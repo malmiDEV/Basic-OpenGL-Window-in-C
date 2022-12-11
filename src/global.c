@@ -1,3 +1,3 @@
 #include "global.h"
 
-struct Global global = {0};
+Global global = {0};

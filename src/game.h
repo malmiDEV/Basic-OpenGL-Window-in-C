@@ -5,15 +5,16 @@
 
 #include "window.h"
 #include "gfx.h"
-#include "render.h"
+#include "global.h"
 
-struct Game 
+typedef struct 
 {
-    struct GLFWwindow *window;
-};
+    GLFWwindow *window;
 
-void game_init(struct Game *game);
-void game_run(struct Game *game);
+} Game;
+
+void game_init(Game *game);
+void game_run(Game *game);
 void game_shutdown();
 
 #endif

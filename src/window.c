@@ -1,6 +1,6 @@
 #include "window.h"
 
-struct GLFWwindow* init_window(unsigned int width, unsigned int height, const char* title) 
+GLFWwindow* init_window(unsigned int width, unsigned int height, const char* title) 
 {
     glfwInit();
 

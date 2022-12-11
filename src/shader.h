@@ -1,12 +1,18 @@
 #ifndef SHADER_H
-#define SHADER_H
+#define SHADER_H    
 
+#include "cglm/cglm.h"
+#include "cglm/struct.h"
 
-struct Shader {
+typedef struct 
+{
     unsigned int id;
-};  
+    mat4s proj;
+    mat4s model;
+    mat4s view;
+} Shader;  
 
-struct Shader shader(const char* vertex_path, const char* frag_path);
+Shader shader(const char* vertex_path, const char* frag_path);
 char *shader_read_file(const char* file_path);
 
 #endif

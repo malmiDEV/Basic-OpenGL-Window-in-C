@@ -4,8 +4,9 @@
 #include <string.h>
 #include <stdio.h>
 
-struct Shader shader(const char* vertex_path, const char* frag_path) {
-    struct Shader shader = {0};
+Shader shader(const char* vertex_path, const char* frag_path) 
+{
+    Shader shader = {0};
     shader.id = glCreateProgram();
 
     int success;
@@ -19,7 +20,8 @@ struct Shader shader(const char* vertex_path, const char* frag_path) {
     glShaderSource(vert_shader, 1, &vert_shader_src, NULL);
     glCompileShader(vert_shader);
     glGetShaderiv(vert_shader, GL_COMPILE_STATUS, &success);
-    if (!success) {
+    if (!success) 
+    {
         glGetShaderInfoLog(vert_shader, 512, NULL, infolog);
         printf("VERT SHADER COMPILE ERROR: %s", infolog);
     }
@@ -29,7 +31,8 @@ struct Shader shader(const char* vertex_path, const char* frag_path) {
     glShaderSource(frag_shader, 1, &frag_shader_src, NULL);
     glCompileShader(frag_shader);
     glGetShaderiv(frag_shader, GL_COMPILE_STATUS, &success);
-    if (!success) {
+    if (!success) 
+    {
         glGetShaderInfoLog(frag_shader, 512, NULL, infolog);
         printf("FRAG SHADER COMPILE ERROR: %s", infolog);
     }
@@ -39,7 +42,8 @@ struct Shader shader(const char* vertex_path, const char* frag_path) {
     glAttachShader(shader.id, frag_shader);
     glLinkProgram(shader.id);
     glGetProgramiv(shader.id, GL_LINK_STATUS, &success);
-    if (!success) {
+    if (!success) 
+    {
         glGetProgramInfoLog(shader.id, 512, NULL, infolog);
         printf("SHADER LINKING ERROR: %s", infolog);
     }
@@ -53,21 +57,23 @@ struct Shader shader(const char* vertex_path, const char* frag_path) {
     return shader;
 }
 
-char *shader_read_file(const char* file_path) {
+char *shader_read_file(const char* file_path) 
+{
     FILE *fp = fopen(file_path, "r");
 
-    if (fp == NULL) {
+    if (fp == NULL) 
+    {
         printf("Shader File Load Error: %s", file_path);
     }
-
+    
     char *string = malloc(1024);
     memset(string, 0, 1024 * sizeof(char));
 
-    fread(string, 1, 1024, fp);
+    fread(string, 1 * sizeof(char), 1024, fp);
+
+    printf("\nshaders: \n%s\n", string);
 
     fclose(fp);
 
     return string;
 }
-
- 
